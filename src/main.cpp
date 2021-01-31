@@ -71,3 +71,13 @@ static void memory_monitor(lv_task_t *param) {
 #endif
 }
 #endif
+
+/* Assume desktop environment */
+#if !defined (ARDUINO) 
+int main() {
+    setup();
+    while(true) {
+        loop();
+    }
+}
+#endif 

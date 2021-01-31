@@ -1,5 +1,6 @@
 #include <lvgl.h>
 #include <unistd.h>
+#include <ctime> /* for time / localtime */
 
 #include "dbuddy.h"
 #include "widgets.h"
