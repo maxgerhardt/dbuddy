@@ -72,12 +72,24 @@ static void memory_monitor(lv_task_t *param) {
 }
 #endif
 
+/* define OS-specific sleep functions */
+#ifdef __WIN32__
+#include <synchapi.h> /* for Sleep() */
+#define SLEEP_FUNC(ms) Sleep(ms)
+#else 
+/* Linux (and mac probably too) */ 
+#include <unistd.h> /* for usleep() */
+#define SLEEP_FUNC(ms) usleep(1000U * (ms))
+#endif
+
 /* Assume desktop environment */
 #if !defined (ARDUINO) 
 int main() {
     setup();
     while(true) {
         loop();
+        /* put thread to sleep to not lock up CPU */
+        SLEEP_FUNC(3); 
     }
 }
 #endif 
