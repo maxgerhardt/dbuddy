@@ -72,6 +72,9 @@ static void memory_monitor(lv_task_t *param) {
 }
 #endif
 
+/* Assume desktop environment */
+#if !defined (ARDUINO) 
+
 /* define OS-specific sleep functions */
 #ifdef __WIN32__
 #include <synchapi.h> /* for Sleep() */
@@ -82,8 +85,6 @@ static void memory_monitor(lv_task_t *param) {
 #define SLEEP_FUNC(ms) usleep(1000U * (ms))
 #endif
 
-/* Assume desktop environment */
-#if !defined (ARDUINO) 
 int main() {
     setup();
     while(true) {
